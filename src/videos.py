@@ -1,20 +1,18 @@
+import logging
+import operator
 import os
 import re
+import sys
 
 import dateutil.parser
-import operator
-import sys
-import tqdm
-
 import ffmpy
 import requests
 import selenium
-import logging
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import tqdm
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from .hls_downloader import Downloader
 from .naive_m3u8_parser import NaiveM3U8Parser

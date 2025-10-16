@@ -1,12 +1,12 @@
 import json
+import logging
 import re
 import sys
 
 import requests
 import selenium
-import logging
 
-from .videos import EchoVideos, EchoCloudVideos
+from .videos import EchoCloudVideos, EchoVideos
 
 _LOGGER = logging.getLogger(__name__)
 

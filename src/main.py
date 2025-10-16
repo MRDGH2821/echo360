@@ -1,11 +1,12 @@
 import argparse
-import os
-import sys
-import re
 import logging
+import os
+import re
+import sys
 import time
-import selenium
 from datetime import datetime
+
+import selenium
 
 try:
     import pick
@@ -17,9 +18,9 @@ except ImportError as e:
 
     subprocess.check_call([sys.executable, "-m", "pip", "install", "windows-curses"])
 
-from .echo_exceptions import EchoLoginError
+from .course import EchoCloudCourse, EchoCourse
 from .downloader import EchoDownloader
-from .course import EchoCourse, EchoCloudCourse
+from .echo_exceptions import EchoLoginError
 from .utils import PERSISTENT_SESSION_FOLDER
 
 _DEFAULT_BEFORE_DATE = datetime(2900, 1, 1).date()

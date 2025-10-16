@@ -1,10 +1,11 @@
-import sys
+import logging
 import os
 import platform
-import stat
-import wget
 import shutil
-import logging
+import stat
+import sys
+
+import wget
 
 _LOGGER = logging.getLogger(__name__)
 

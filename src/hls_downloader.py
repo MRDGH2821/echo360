@@ -1,10 +1,12 @@
+import os
+import sys
+import time
+
 import ffmpy
 import gevent
-from gevent.pool import Pool
 import requests
-import os, sys
-import time
 import tqdm
+from gevent.pool import Pool
 
 from .echo_exceptions import HlsDownloaderError
 

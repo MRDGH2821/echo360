@@ -1,20 +1,20 @@
-import dateutil.parser
-import os
-import sys
 import logging
+import os
 import re
+import sys
+import warnings  # hide the warnings of phantomjs being deprecated
+
+import dateutil.parser
+import pip_ensure_version
+import selenium
+import selenium.common.exceptions as seleniumException
+from pick import pick
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 from .course import EchoCloudCourse
 from .echo_exceptions import EchoLoginError
-from .utils import naive_versiontuple, PERSISTENT_SESSION_FOLDER
-
-import pip_ensure_version
-from pick import pick
-import selenium
-from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-import selenium.common.exceptions as seleniumException
-import warnings  # hide the warnings of phantomjs being deprecated
+from .utils import PERSISTENT_SESSION_FOLDER, naive_versiontuple
 
 warnings.filterwarnings("ignore", category=UserWarning, module="selenium")
 
@@ -121,8 +121,8 @@ def build_firefox_driver(
     kwargs = dict()
 
     if selenium_version_ge_4100:
-        from selenium.webdriver.firefox.service import Service
         from selenium.webdriver.firefox.options import Options
+        from selenium.webdriver.firefox.service import Service
 
         option = Options()
         option.profile = profile
