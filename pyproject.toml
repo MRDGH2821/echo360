@@ -22,14 +22,14 @@ classifiers = [
     "Topic :: Terminals",
 ]
 dependencies = [
-    "ffmpy>=0.2.2",
-    "gevent>=1.2.2",
-    "pick==0.6.7",
-    "pip-ensure-version==1",
-    "python-dateutil>=2.2",
-    "requests>=2.8.14",
-    "selenium>=2.44",
-    "tqdm",
+    "ffmpy>=0.6.3",
+    "gevent>=25.9.1",
+    "pick>=2.4.0",
+    "pip-ensure-version>=1.0.1",
+    "python-dateutil>=2.9.0.post0",
+    "requests>=2.32.5",
+    "selenium>=4.36.0",
+    "tqdm>=4.67.1",
     "wget>=3.2",
 ]
 
