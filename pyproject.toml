@@ -39,6 +39,16 @@ urls.Homepage = "https://github.com/soraxas/echo360"
 urls."Issue tracker" = "https://github.com/soraxas/echo360/issues"
 scripts.echo360-downloader = "echo360.main:main"
 
+[dependency-groups]
+dev = [
+    "mypy>=1.18.2",
+    "ruff>=0.14.0",
+    "ty>=0.0.1a22",
+    "types-gevent>=25.4.0.20250915",
+    "types-python-dateutil>=2.9.0.20251008",
+    "types-requests>=2.32.4.20250913",
+    "types-tqdm>=4.67.0.20250809",
+]
 
 [tool.ruff.lint]
 select = ["I"]
