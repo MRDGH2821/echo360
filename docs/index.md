@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 # Echo360 Videos Downloader
 
 echo360 is a command-line Python tool that allows you to download lecture videos from any university's Echo360 lecture portal. All that's required is the particular course's url. See the FAQ for tips on how to find it.
@@ -33,7 +34,7 @@ The scripts will boostrap all installation and download all needed files on the 
 
 ### Optional
 
--   ffmpeg (for transcoding ts file to mp4 file) See [here](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg) for a brief instructions of installing it in different OS.
+- ffmpeg (for transcoding ts file to mp4 file) See [here](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg) for a brief instructions of installing it in different OS.
 
 ## Manual
 
@@ -51,9 +52,9 @@ python echo360.py
 
 ### Operating System
 
--   Linux
--   OS X
--   Windows
+- Linux
+- OS X
+- Windows
 
 # Usage
 
@@ -67,6 +68,7 @@ python echo360.py
 ```
 
 ### Script args
+
 ```
 >>> usage: echo360.py [-h] [--output OUTPUT_PATH]
               [--after-date AFTER_DATEYYYY-MM-DD)]
@@ -116,6 +118,7 @@ optional arguments:
                         download all (default) or based on dates .
   --debug               Enable extensive logging.
 ```
+
 # Examples
 
 ```shell
@@ -215,17 +218,21 @@ First, you'd need to install [Python](https://www.python.org/downloads/) in your
 ### My credentials does not work?
 
 You can setup any credentials need with manually logging into websites, by running the script with:
+
 ```sh
 ./run.sh ECHO360_URL --setup-credential
 ```
+
 This will open up a chrome instance that allows you to log into your website as you normally do. Afterwards, simply type 'continue' into your shell and press enter to continue to proceeds with the rest of the script.
 
 ### How do I download only individual video(s)?
 
 You are in luck! It is now possible to pick a subset of videos to download from (instead of needing to download everything like before). Just pass the interactive argument like this:
+
 ```sh
 ./run.sh ECHO360_URL --interactive  # or ./run.sh ECHO360_URL -i
 ```
+
 ...and it shall presents an interactive screen for you to pick each individual video(s) that you want to download, like the screenshot as shown below.
 
 <img src="images/pick_individual_videos_screenshot.png" width="650" height="auto" >
