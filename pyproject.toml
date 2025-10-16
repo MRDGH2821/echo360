@@ -1,17 +1,40 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
 [project]
 name = "echo360"
-version = "2.0.0"
-description = "Commandline tool for automated downloads of echo360 videos hosted by university "
+version = "3.0.0"
+description = "Commandline tool for automated downloads of echo360 videos"
 readme = "README.md"
+keywords = ["downloader", "echo360", "lectures", "university", "video"]
+license = { text = "MIT" }
+authors = [{ name = "soraxas", email = "oscar@tinyiu.com" }]
 requires-python = ">=3.12"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: System :: Networking",
+    "Topic :: System :: Shells",
+    "Topic :: Terminals",
+]
 dependencies = [
     "ffmpy>=0.2.2",
     "gevent>=1.2.2",
     "pick==0.6.7",
-    "pip-ensure-version==1.0.0",
+    "pip-ensure-version==1",
     "python-dateutil>=2.2",
     "requests>=2.8.14",
-    "selenium>=2.44.0",
-    "tqdm>=4.67.1",
+    "selenium>=2.44",
+    "tqdm",
     "wget>=3.2",
 ]
+
+urls.Code = "https://github.com/soraxas/echo360"
+urls.Documentation = "https://github.com/soraxas/echo360/blob/master/README.md"
+urls.Homepage = "https://github.com/soraxas/echo360"
+urls."Issue tracker" = "https://github.com/soraxas/echo360/issues"
+scripts.echo360-downloader = "echo360.main:main"

@@ -111,8 +111,8 @@ wheels = [
 
 [[package]]
 name = "echo360"
-version = "0.1.0"
-source = { virtual = "." }
+version = "3.0.0"
+source = { editable = "." }
 dependencies = [
     { name = "ffmpy" },
     { name = "gevent" },
@@ -134,7 +134,7 @@ requires-dist = [
     { name = "python-dateutil", specifier = ">=2.2" },
     { name = "requests", specifier = ">=2.8.14" },
     { name = "selenium", specifier = ">=2.44.0" },
-    { name = "tqdm", specifier = ">=4.67.1" },
+    { name = "tqdm" },
     { name = "wget", specifier = ">=3.2" },
 ]
 
