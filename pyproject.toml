@@ -1,0 +1,17 @@
+[project]
+name = "echo360"
+version = "2.0.0"
+description = "Commandline tool for automated downloads of echo360 videos hosted by university "
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ffmpy>=0.2.2",
+    "gevent>=1.2.2",
+    "pick==0.6.7",
+    "pip-ensure-version==1.0.0",
+    "python-dateutil>=2.2",
+    "requests>=2.8.14",
+    "selenium>=2.44.0",
+    "tqdm>=4.67.1",
+    "wget>=3.2",
+]
