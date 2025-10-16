@@ -96,9 +96,7 @@ class EchoVideo(object):
                 if refresh_attempt >= max_attempts:
                     print(
                         "\r\nERROR: Connection timeouted after {} second for {} attempts... \
-                          Possibly internet problem?".format(
-                            waitsecond, max_attempts
-                        )
+                          Possibly internet problem?".format(waitsecond, max_attempts)
                     )
                     raise
                 refresh_attempt += 1
@@ -106,9 +104,7 @@ class EchoVideo(object):
                 if stale_attempt >= max_attempts:
                     print(
                         "\r\nERROR: Elements are not stable to retrieve after {} attempts... \
-                        Possibly internet problem?".format(
-                            max_attempts
-                        )
+                        Possibly internet problem?".format(max_attempts)
                     )
                     raise
                 stale_attempt += 1
@@ -436,9 +432,7 @@ class EchoCloudVideo(EchoVideo):
                     if stale_attempt >= max_attempts:
                         print(
                             "\r\nERROR: Elements are not stable to retrieve after {} attempts... \
-                            Possibly internet problem?".format(
-                                max_attempts
-                            )
+                            Possibly internet problem?".format(max_attempts)
                         )
                         raise
                     stale_attempt += 1
