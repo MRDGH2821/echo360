@@ -37,7 +37,7 @@ urls.Code = "https://github.com/soraxas/echo360"
 urls.Documentation = "https://github.com/soraxas/echo360/blob/master/README.md"
 urls.Homepage = "https://github.com/soraxas/echo360"
 urls."Issue tracker" = "https://github.com/soraxas/echo360/issues"
-scripts.echo360-downloader = "echo360.main:main"
+scripts.echo360-downloader = "src.main:main"
 
 [dependency-groups]
 dev = [
