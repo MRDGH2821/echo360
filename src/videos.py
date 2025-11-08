@@ -117,7 +117,7 @@ class EchoVideo(object):
 
     @property
     def title(self):
-        if type(self._title) != str:
+        if not isinstance(self._title, str):
             # it's type unicode for python2
             return self._title.encode("utf-8")
         return self._title
@@ -567,7 +567,7 @@ class EchoCloudSubVideo(EchoCloudVideo):
 
     @property
     def title(self):
-        if type(self._title) != str:
+        if not isinstance(self._title, str):
             # it's type unicode for python2
             self._title = self._title.encode("utf-8")
         return "{} - {}".format(self.group_name, self._title)

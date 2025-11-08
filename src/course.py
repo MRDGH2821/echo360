@@ -1,6 +1,5 @@
 import json
 import logging
-import re
 import sys
 
 import requests
@@ -88,7 +87,7 @@ class EchoCourse(object):
     def course_name(self):
         if self._course_name is None:
             # trigger getting course_id to get course name as well
-            self.course_id
+            _LOGGER.debug(self.course_id)
         if not isinstance(self._course_name, str):
             # it's type unicode for python2
             return self._course_name.encode("utf-8")
@@ -114,7 +113,7 @@ class EchoCourse(object):
             )
             json_str = self.driver.find_element_by_tag_name("pre").text
         except ValueError as e:
-            raise Exception("Unable to retrieve JSON (course_data) from url", e)
+            raise Exception("Unable to retrieve JSON (course_data) from url", e) from e
         self.course_data = json.loads(json_str)
         return self.course_data
 
@@ -212,6 +211,6 @@ class EchoCloudCourse(EchoCourse):
 
             json_str = r.text
         except ValueError as e:
-            raise Exception("Unable to retrieve JSON (course_data) from url", e)
+            raise Exception("Unable to retrieve JSON (course_data) from url") from e
         self.course_data = json.loads(json_str)
         return self.course_data

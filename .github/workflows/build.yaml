@@ -1,5 +1,6 @@
 name: Standalone build with Pyinstaller
 
+permissions: read-all
 on:
   push:
     branches: [master]
@@ -46,7 +47,7 @@ jobs:
 
       - name: Set outputs
         id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: Check outputs
         run: echo ${{ steps.vars.outputs.sha_short }}
       - name: Create Release

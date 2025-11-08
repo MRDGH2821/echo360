@@ -16,6 +16,8 @@
     "lecho",
     "pbar",
     "phantomjs",
-    "USYD"
+    "Pyinstaller",
+    "USYD",
+    "vars"
   ]
 }
