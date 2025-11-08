@@ -8,48 +8,109 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v5
 
-      # necessary because pyinstaller does not work when entry has the same
-      # name as the python package
-      - name: setup entrypoint for pyinstaller
-        run: mv echo360.py entrypoint.py
-      # - name: Package Application
-      #   uses: JackMcKew/pyinstaller-action-linux@main
-      #   with:
-      #     path: .
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
 
-      # we are directly executing commands because GH action pyinstaller (somehow)
-      # doesn't have _curse (import problem)
-      - name: Linux PyInstaller
-        run: pip install -r requirements.txt && pip install pyinstaller && python -m PyInstaller echo360.spec
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install dependencies with uv
+        run: |
+          uv sync
+          uv pip install pyinstaller
+
+      - name: Build Linux executable with PyInstaller
+        run: |
+          uv run pyinstaller --onefile \
+            --name echo360 \
+            --hidden-import=selenium \
+            --hidden-import=pick \
+            --hidden-import=gevent \
+            --hidden-import=tqdm \
+            --collect-data selenium \
+            --console \
+            src/main.py
+
       - uses: actions/upload-artifact@v4
         with:
           name: echo360-linux
           path: dist/echo360
-          #path: dist/linux/echo360
 
-      - name: add window-curse to window build
-        run: echo windows-curses >> requirements.txt
-      - name: Windows PyInstaller
-        uses: JackMcKew/pyinstaller-action-windows@main
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
         with:
-          path: .
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install dependencies with uv
+        run: |
+          uv sync
+          uv pip install pyinstaller windows-curses
+
+      - name: Build Windows executable with PyInstaller
+        run: |
+          uv run pyinstaller --onefile `
+            --name echo360 `
+            --hidden-import=selenium `
+            --hidden-import=pick `
+            --hidden-import=gevent `
+            --hidden-import=tqdm `
+            --hidden-import=windows-curses `
+            --collect-data selenium `
+            --console `
+            src/main.py
+
       - uses: actions/upload-artifact@v4
         with:
-          name: echo360-window
-          path: dist/windows/echo360.exe
+          name: echo360-windows
+          path: dist/echo360.exe
 
       #############################################
+
+  release:
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-22.04
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download Linux artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: echo360-linux
+          path: dist-linux
+
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: echo360-windows
+          path: dist-windows
 
       - name: Set outputs
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
       - name: Check outputs
         run: echo ${{ steps.vars.outputs.sha_short }}
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -60,23 +121,23 @@ jobs:
           release_name: "Standalone echo360 executable (SHA: ${{ steps.vars.outputs.sha_short }})"
           draft: false
           prerelease: false
+
       - name: Upload Release Asset Linux
-        # id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/echo360
+          asset_path: dist-linux/echo360
           asset_name: echo360-linux
           asset_content_type: application/octet-stream
-      - name: Upload Release Asset
-        # id: upload-release-asset windows
+
+      - name: Upload Release Asset Windows
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/windows/echo360.exe
+          asset_path: dist-windows/echo360.exe
           asset_name: echo360-windows.exe
           asset_content_type: application/octet-stream
