@@ -23,8 +23,10 @@ classifiers = [
     "Topic :: Terminals",
 ]
 dependencies = [
+    "argparse>=1.4",
     "ffmpy>=0.6.3",
     "gevent>=25.9.1",
+    "logging>=0.4.9.6",
     "pick>=2.4",
     "pip-ensure-version>=1.0.1",
     "python-dateutil>=2.9.0.post0",
@@ -33,6 +35,7 @@ dependencies = [
     "tqdm>=4.67.1",
     "undetected-chromedriver>=3.5.5",
     "wget>=3.2",
+    "windows-curses>=2.3; sys_platform=='win32'",
 ]
 
 urls.Code = "https://github.com/soraxas/echo360"
@@ -44,6 +47,7 @@ scripts.echo360-downloader = "src.main:main"
 [dependency-groups]
 dev = [
     "mypy>=1.18.2",
+    "pyinstaller>=6.16",
     "ruff>=0.14",
     "ty>=0.0.1a22",
     "types-gevent>=25.4.0.20250915",
