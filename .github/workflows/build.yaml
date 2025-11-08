@@ -31,15 +31,7 @@ jobs:
 
       - name: Build Linux executable with PyInstaller
         run: |
-          uv run pyinstaller --onefile \
-            --name echo360 \
-            --hidden-import=selenium \
-            --hidden-import=pick \
-            --hidden-import=gevent \
-            --hidden-import=tqdm \
-            --collect-data selenium \
-            --console \
-            src/main.py
+          uv run pyinstaller --onefile echo360.spec
 
       - uses: actions/upload-artifact@v4
         with:
@@ -68,17 +60,7 @@ jobs:
 
       - name: Build Windows executable with PyInstaller
         run: |
-          uv run pyinstaller --onefile `
-            --name echo360 `
-            --hidden-import=selenium `
-            --hidden-import=pick `
-            --hidden-import=gevent `
-            --hidden-import=tqdm `
-            --hidden-import=windows-curses `
-            --collect-data selenium `
-            --console `
-            src/main.py
-
+          uv run pyinstaller --onefile echo360.spec --hidden-import=windows-curses
       - uses: actions/upload-artifact@v4
         with:
           name: echo360-windows
