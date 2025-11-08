@@ -11,23 +11,21 @@ The way this script works _should_ support all university's echo360 system in th
 
 See it in action:
 
-<p align="center">
-    <img width="700" height="auto" src="docs/images/demo.gif" alt="echo360 demo" />
-</p>
+![echo360 demo](docs/images/demo.gif)
 
 **NEWS:** It now works with `echo360.org` platform as well. Special thanks to [_@cloudrac3r_](https://github.com/cloudrac3r) and _Emma_ for their kind offering of providing sources and helped debugging it. Read [FAQ](#echo360-cloud) for details.
 
-# Getting Started
+## Getting Started
 
 ### Automated Installation
 
-**Linux / MacOS**
+#### Linux / MacOS
 
 ```shell
 ./run.sh COURSE_URL  # where COURSE_URL is your course url
 ```
 
-**Windows**
+#### Windows
 
 ```shell
 run.bat COURSE_URL  # where COURSE_URL is your course url
@@ -35,23 +33,29 @@ run.bat COURSE_URL  # where COURSE_URL is your course url
 
 The scripts will boostrap all installation and download all needed files on the fly.
 
-**pip**
+#### pip
 
 ```shell
 pip install echo360
 echo360-downloader COURSE_URL  # where COURSE_URL is your course url
 ```
 
-### Optional
+#### Optional
 
 - ffmpeg (for transcoding ts file to mp4 file) See [here (windows)](https://www.easytechguides.com/install-ffmpeg/) or [here](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg) for a brief instructions of installing it in different OS.
 
-## Manual
+### Manual
 
 The provided script automated every operations, and install all dependency in a local python virtual environment. You can also use the system-wise python installation by manual installation. Get started by first install all requirements:
 
 ```shell
-pip install -r requirements.txt  # or with: python -m pip install -r requirements.txt
+pip install .  # or with: python -m pip install .
+```
+
+or
+
+```sh
+uv sync
 ```
 
 Then run with:
@@ -60,26 +64,31 @@ Then run with:
 python echo360.py
 ```
 
-### Operating System
+or
+
+```sh
+uv run echo360-downloader
+```
+
+## Operating System
 
 - Linux
 - OS X
 - Windows
 
-# Usage
+## Usage
 
 **NOTE THAT** all the below command you can substitute `python echo360.py` with `./run.sh` (or `run.bat` if you are in windows)
 
 ### Quick Start
 
 ```shell
->>> python echo360.py                       \
-    https://view.streaming.sydney.edu.au:8443/ess/portal/section/2018_S1C_INFO1001_ND
+python echo360.py https://view.streaming.sydney.edu.au:8443/ess/portal/section/2018_S1C_INFO1001_ND
 ```
 
 ### Script args
 
-```
+```log
 >>> usage: echo360.py [-h] [--output OUTPUT_PATH]
                   [--after-date AFTER_DATEYYYY-MM-DD)]
                   [--before-date BEFORE_DATE(YYYY-MM-DD] [--unikey UNIKEY]
@@ -147,48 +156,48 @@ optional arguments:
                         compatibility reason.
 ```
 
-# Examples
+## Examples
 
 ```shell
->>> python echo360.py                  \
-    "041698d6-f43a-4b09-a39a-b90475a63530" \  # Note this default to USYD's echo360
-    --output "~/Lectures"                     # Use full URL for other University
+python echo360.py                  \
+"041698d6-f43a-4b09-a39a-b90475a63530" \  # Note this default to USYD's echo360
+--output "~/Lectures"                     # Use full URL for other University
 ```
 
 ### Download all available lectures
 
 ```shell
->>> python echo360.py                  \
-    "041698d6-f43a-4b09-a39a-b90475a63530" \
-    --output "~/Lectures"
+python echo360.py                  \
+"041698d6-f43a-4b09-a39a-b90475a63530" \
+--output "~/Lectures"
 ```
 
 ### Download all lectures on or before a date
 
 ```shell
->>> python echo360.py                  \
-    "041698d6-f43a-4b09-a39a-b90475a63530" \
-    --output "~/Lectures"                  \
-    --before-date "2014-10-14"
+python echo360.py                  \
+"041698d6-f43a-4b09-a39a-b90475a63530" \
+--output "~/Lectures"                  \
+--before-date "2014-10-14"
 ```
 
 ### Download all lectures on or after a date
 
 ```shell
->>> python echo360.py                  \
-    "041698d6-f43a-4b09-a39a-b90475a63530" \
-    --output "~/Lectures"                  \
-    --after-date "2014-10-14"
+python echo360.py                  \
+"041698d6-f43a-4b09-a39a-b90475a63530" \
+--output "~/Lectures"                  \
+--after-date "2014-10-14"
 ```
 
 ### Download all lectures in a given date range (inclusive)
 
 ```shell
->>> python echo360.py                  \
-    "041698d6-f43a-4b09-a39a-b90475a63530" \
-    --output "~/Lectures"                  \
-    --after-date "2014-08-26"              \
-    --before-date "2014-10-14"
+python echo360.py                  \
+"041698d6-f43a-4b09-a39a-b90475a63530" \
+--output "~/Lectures"                  \
+--after-date "2014-08-26"              \
+--before-date "2014-10-14"
 ```
 
 ### Use chrome driver (instead of phantomjs)
@@ -196,12 +205,12 @@ optional arguments:
 Note: sometime it works better than phantomjs in some system
 
 ```shell
->>> python echo360.py                  \
-    "041698d6-f43a-4b09-a39a-b90475a63530" \
-    --chrome
+python echo360.py                  \
+"041698d6-f43a-4b09-a39a-b90475a63530" \
+--chrome
 ```
 
-# FAQ
+## FAQ
 
 ### Is my university supported?
 
@@ -233,41 +242,41 @@ As for `echo360.org`, see [this](#echo360-cloud).
 
 You should go to the main Echo360 Lecture page, which usually composed of all the lecturer recordings in a list format as shown below. It's the main page that lists all the recorded lectures and gives you the option to stream them or download them individually. This is important for downloading all the available videos from within the course.
 
-<img height="auto" src="docs/images/course_page.png" alt="echo360 course main page" />
+![echo360 course main page](docs/images/course_page.png)
 
 You can usually find this link on your course's main webpage. If your course webpage only links directly to videos, then you should be able to navigate back **by clicking the title of your course name (top of page)**.
 
-The URL for the University of Sydney - 2017 semester 2 of CIVL4903 looks like
+The URL for the University of Sydney - 2017 semester 2 of CIVL4903 looks like:
 
-    https://view.streaming.sydney.edu.au:8443/ess/portal/section/041698d6-f43a-4b09-a39a-b90475a63530
+`https://view.streaming.sydney.edu.au:8443/ess/portal/section/041698d6-f43a-4b09-a39a-b90475a63530`
 
 which you can verify is correct in the above screenshot. **This should be the full URL you enter into the script, for all other universities' echo system.**
 
 The UUID (Unified Unique IDentifier) is the last element of the URL. So in the above example it's,
 
-    041698d6-f43a-4b09-a39a-b90475a63530
+`041698d6-f43a-4b09-a39a-b90475a63530`
 
 ### echo360 cloud
 
 Echo360 cloud refers to websites in the format of `https://echo360.org[.xx]`. This module now officially support this platform.
 
-<p align="center">
-<img height="auto" width="700" src="docs/images/echo360cloud_home.png" alt="echo360 cloud course main page" />
-</p>
+![echo360 cloud course main page](docs/images/echo360cloud_home.png)
+
+This method requires you to setup SSO credentials, therefore, it needs to open up a browser for you to setup your own university's SSO credentials.
 
 This method requires you to setup SSO credentials, therefore, it needs to open up a browser for you to setup your own university's SSO credentials.
 
 To download videos, run:
 
-```shell
-./run.sh https://echo360.<org|net>[.xx]/section/$(UUID)/home
+```sh
+./run.sh <https://echo360>.<org|net>[.xx]/section/$(UUID)/home
 ```
 
 where `[.xx]` is an optional country flag specific to your echo360 platform and `$(UUID)` is the unique identifier for your course. This should the url that you can retrieve from your course's _main page_ like the following.
 
-<img height="auto" src="docs/images/echo360cloud_course-page.png" alt="echo360 cloud course main page" />
+![echo360 cloud course main page](docs/images/echo360cloud_course-page.png)
 
-Note that this implies `setup-credential` option and will use chrome-webdriver by default. If you don't have chrome or prefer to use firefox, run it with the ` --firefox` flag like so:
+Note that this implies `setup-credential` option and will use chrome-webdriver by default. If you don't have chrome or prefer to use firefox, run it with the `--firefox` flag like so:
 
 ```shell
 ./run.sh https://echo360.<org|net>[.xx]/section/$(UUID)/home --firefox
@@ -279,8 +288,9 @@ After running the command, it will opens up a browser instance, most likely with
 
 First, you'd need to install [Python](https://www.python.org/downloads/) in your system. Then, you can follow the youtube tutorial videos to get an idea of how to use the module.
 
-- For [Windows users](https://www.youtube.com/watch?v=Lv1wtjnCcwI) (and showcased how to retrieve actual echo360 course url)
-  [![](docs/images/youtube_win_tutorial.jpg)](https://www.youtube.com/watch?v=Lv1wtjnCcwI)
+For [Windows users](https://www.youtube.com/watch?v=Lv1wtjnCcwI) (and showcased how to retrieve actual echo360 course url)
+
+[![Youtube Tutorial](docs/images/youtube_win_tutorial.jpg)](https://www.youtube.com/watch?v=Lv1wtjnCcwI)
 
 ### My credentials does not work?
 
@@ -320,7 +330,7 @@ You are in luck! It is now possible to pick a subset of videos to download from 
 
 ...and it shall presents an interactive screen for you to pick each individual video(s) that you want to download, like the screenshot as shown below.
 
-<img src="/docs/images/pick_individual_videos_screenshot.png" width="650" height="auto" >
+![Interactive video selection screen](docs/images/pick_individual_videos_screenshot.png)
 
 ### My lecture has two video feeds, how can I download both of them?
 
@@ -330,7 +340,7 @@ You can add argument `--alternative_feeds` or simply `-a` to download both video
 
 The current script uses a web-driver to emulate as a web-browser in order to retrieve the original streaming link. There are current two options for the web-driver: PhantomJS and Chrome. It then uses a hls downloader to simultaneously download all the smaller parts of the videos, and combined into one. Transcoding into mp4 will be performed if ffmpeg is present in your system, and all files will be renamed into a nice format.
 
-# Credits
+## Credits
 
 Credits to [jhalstead85](https://github.com/jhalstead85/lecho360) for which this script is based upon.
 This script has then been adopted to be usable for USYD echo360. It was then extended to work in canvas (which uses a human-readable name instead of UUID); and later automated the entire process and become usable for all other universities.
