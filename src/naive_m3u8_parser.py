@@ -34,7 +34,7 @@ class NaiveM3U8Parser:
     #EXT-X-STREAM-INF:BANDWIDTH=220997,RESOLUTION=1920x1080,PROGRAM-ID=1,AUDIO="q1",CODECS="avc1.640029,mp4a.40.2",FRAME-RATE=25.0
     s1q1.m3u8
     ```
-    where an audio stream can be embeded into hash # line.
+    where an audio stream can be embedded into hash # line.
 
     we will account for that.
     """
@@ -55,7 +55,7 @@ class NaiveM3U8Parser:
     def get_video_and_audio(self):
         video_uri = None
         audio_uri = None
-        # priortise the last video. Note that we won't care about safety, as the outter class
+        # prioritise the last video. Note that we won't care about safety, as the outer class
         # should catch any exception.
         video = self.videos[-1]
         video_uri = video["URI"]

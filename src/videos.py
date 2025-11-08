@@ -407,7 +407,7 @@ class EchoCloudVideo(EchoVideo):
             while True:
                 self._driver.get(video_url)
                 try:
-                    # the replace is for reversing the escape by the escapped js in the page source
+                    # the replace is for reversing the escape by the escaped js in the page source
                     urls = set(
                         re.findall(
                             'https://[^,"]*?[.]{}'.format(suffix),
@@ -445,8 +445,8 @@ class EchoCloudVideo(EchoVideo):
             # high or low definition.
             # Some university uses hd1 and hd2 for their alternative feeds, use flag `-a`
             # to download both feeds.
-            # Let's prioritise hd over sd, and 1 over 2 (the latter is arbitary)
-            # which happens to be the natual order of letter anyway, so we can simply use sorted.
+            # Let's prioritise hd over sd, and 1 over 2 (the latter is arbitrary)
+            # which happens to be the natural order of letter anyway, so we can simply use sorted.
             return sorted(urls)[:2]
 
         def from_json_m3u8():

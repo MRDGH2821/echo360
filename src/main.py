@@ -331,9 +331,9 @@ def main():
             binary_downloader.get_download_link(),
             binary_downloader.get_bin(),
         )
-        # First test for existance of localbinary file
+        # First test for existence of localbinary file
         if not os.path.isfile(binary_downloader.get_bin()):
-            # If failed, then test for existance of global executable in PATH
+            # If failed, then test for existence of global executable in PATH
             if cmd_exists(binary_type):
                 use_local_binary = False
                 _LOGGER.debug("Using global binary file")

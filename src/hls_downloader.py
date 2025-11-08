@@ -54,7 +54,7 @@ class Downloader:
         )
         self.retry = retry
         self.dir = ""
-        self.succed = {}
+        self.succeed = {}
         self.failed = []
         self.ts_total = 0
         self._result_file_name = None
@@ -181,7 +181,7 @@ class Downloader:
                         for data in r.iter_content(block_size):
                             pbar.update(len(data))
                             f.write(data)
-                self.succed[index] = file_name
+                self.succeed[index] = file_name
                 self.ts_current += 1
                 return
             except EnvironmentError as e:
@@ -206,7 +206,7 @@ class Downloader:
                     file_name = url.split("/")[-1].split("?")[0]
                     with open(os.path.join(self.dir, file_name), "wb") as f:
                         f.write(r.content)
-                    self.succed[index] = file_name
+                    self.succeed[index] = file_name
                     self.ts_current += 1
                     update_progress(
                         self.ts_current,
@@ -226,7 +226,7 @@ class Downloader:
         index = 0
         outfile = ""
         while index < self.ts_total:
-            file_name = self.succed.get(index, "")
+            file_name = self.succeed.get(index, "")
             if file_name:
                 if self._result_file_name is None:
                     self._result_file_name = file_name

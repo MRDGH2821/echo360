@@ -20,7 +20,7 @@ class FirefoxDownloader(BinaryDownloader):
         return super(FirefoxDownloader, self).get_os_suffix()
 
     def get_download_link(self):
-        os_suffix = self.get_os_suffix()
+        # os_suffix = self.get_os_suffix()
         filename = "geckodriver-{0}-{1}.{2}".format(
             self._version,
             self.get_os_suffix(),

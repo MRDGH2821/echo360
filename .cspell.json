@@ -1,0 +1,21 @@
+{
+  "allowCompoundWords": true,
+  "dictionaries": [],
+  "dictionaryDefinitions": [],
+  "ignorePaths": [],
+  "ignoreWords": [],
+  "import": [],
+  "language": "en-GB,en-AU",
+  "version": "0.2",
+  "words": [
+    "dcap",
+    "elearning",
+    "EXTM",
+    "infile",
+    "KHTML",
+    "lecho",
+    "pbar",
+    "phantomjs",
+    "USYD"
+  ]
+}

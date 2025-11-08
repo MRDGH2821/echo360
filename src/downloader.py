@@ -302,7 +302,7 @@ class EchoDownloader(object):
                 import getpass
 
                 self._password = getpass.getpass(
-                    "Passowrd for {0}: ".format(self._username)
+                    "Password for {0}: ".format(self._username)
                 )
         # Input username and password:
         # user_name = self._driver.find_element_by_id('j_username')
@@ -452,7 +452,7 @@ class EchoDownloader(object):
             return None
 
     def retrieve_real_uuid(self):
-        # patch for cavas (canvas.sydney.edu.au) where uuid is hidden in page source
+        # patch for canvas (canvas.sydney.edu.au) where uuid is hidden in page source
         # we detect it by trying to retrieve the real uuid
         uuid = re.search(
             "/ess/client/section/([0-9a-zA-Z]{8}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{12})",

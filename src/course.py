@@ -159,16 +159,16 @@ class EchoCloudCourse(EchoCourse):
         if self._course_id is None:
             # self.course_data['data'][0]['lesson']['lesson']['displayName']
             # should be in the format of XXXXX (ABCD1001 - 2020 - Semester 1) ???
-            # canidate = self.course_data['data'][0]['lesson']['video']['published']['courseName']
+            # candidate = self.course_data['data'][0]['lesson']['video']['published']['courseName']
             # print(self._course_name)
-            # self._course_name = canidate
+            # self._course_name = candidate
             # Too much variant, it's too hard to have a unique way to extract course id.
             # we will simply use course name and ignore any course id.
             self._course_id = ""
-            # result = re.search('^[^(]+', canidate)
+            # result = re.search('^[^(]+', candidate)
             # if result is not None:
             #     self._course_name = result.group()
-            #     result = re.search('[(].+[)]', canidate)
+            #     result = re.search('[(].+[)]', candidate)
             #     self._course_id = result.group()[1:-1]
         return self._course_id
 
