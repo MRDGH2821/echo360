@@ -4,7 +4,7 @@ requires = ["hatchling"]
 
 [project]
 name = "echo360"
-version = "3.0.0"
+version = "3.0.1"
 description = "Commandline tool for automated downloads of echo360 videos"
 readme = "README.md"
 keywords = ["downloader", "echo360", "lectures", "university", "video"]
