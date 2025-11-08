@@ -1,6 +1,7 @@
 name: Standalone build with Pyinstaller
 
-permissions: read-all
+permissions:
+  contents: write
 on:
   push:
     branches: [master]
