@@ -89,14 +89,15 @@ python echo360.py https://view.streaming.sydney.edu.au:8443/ess/portal/section/2
 ### Script args
 
 ```log
->>> usage: echo360.py [-h] [--output OUTPUT_PATH]
-                  [--after-date AFTER_DATEYYYY-MM-DD)]
-                  [--before-date BEFORE_DATE(YYYY-MM-DD] [--unikey UNIKEY]
-                  [--password PASSWORD] [--setup-credentials]
-                  [--download-phantomjs-binary] [--chrome] [--firefox]
-                  [--echo360cloud] [--interactive] [--alternative_feeds]
-                  [--debug] [--auto | --manual]
-                  ECHO360_URL
+usage: echo360 [-h] [--output OUTPUT_PATH]
+               [--after-date AFTER_DATE(YYYY-MM-DD)]
+               [--before-date BEFORE_DATE(YYYY-MM-DD)] [--unikey UNIKEY]
+               [--password PASSWORD] [--setup-credentials]
+               [--persistent-session] [--download-phantomjs-binary]
+               [--stealth] [--chrome] [--firefox] [--echo360cloud]
+               [--interactive] [--alternative_feeds] [--debug]
+               [--auto | --manual]
+               ECHO360_URL
 
 Download lectures from portal.
 
@@ -104,10 +105,10 @@ positional arguments:
   ECHO360_URL           Full URL of the echo360 course page, or only the UUID
                         (which defaults to USYD). The URL of the course's
                         video lecture page, for example: http://recordings.eng
-                        ineering.illinois.edu/ess/portal/section/115f3def-7371
-                        -4e98-b72f-6efe53771b2a)
+                        ineering.illinois.edu/ess/portal/section/115f3def-
+                        7371-4e98-b72f-6efe53771b2a)
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   --output OUTPUT_PATH, -o OUTPUT_PATH
                         Path to the desired output directory. The output
@@ -130,21 +131,29 @@ optional arguments:
   --setup-credentials   Open a chrome instance to expose an ability for user
                         to log into any website to obtain credentials needed
                         before proceeding. (implies using chrome-driver)
+  --persistent-session, -P
+                        Starts a persistent session (helps to store
+                        credentials). Session uses
+                        '_browser_persistent_session' folder, and currently
+                        only supports chrome driver.
   --download-phantomjs-binary
                         Force the echo360.py script to download a local binary
                         file for phantomjs (will override system bin)
+  --stealth             Use Stealth Chrome Driver to bypass some bot detection
+                        (e.g. useful for FIDO).
   --chrome              Use Chrome Driver instead of phantomjs webdriver. You
                         must have chromedriver installed in your PATH.
   --firefox             Use Firefox Driver instead of phantomjs webdriver. You
                         must have geckodriver installed in your PATH.
+  --echo360cloud        Treat the given hostname as echo360 cloud platform.
   --interactive, -i     Interactively pick the lectures you want, instead of
                         download all (default) or based on dates .
   --alternative_feeds, -a
                         Download first two video feeds. Since some university
                         have multiple video feeds, with this option on the
-                        downloader will also try to download the second
-                        video, which could be the alternative feed. Might
-                        only work on some 'echo360.org' hosts.
+                        downloader will also try to download the second video,
+                        which could be the alternative feed. Might only work
+                        on some 'echo360.org' hosts.
   --debug               Enable extensive logging.
   --auto                Only effective for 'echo360.org' host. When set, this
                         script will attempts to automatically redirects after
