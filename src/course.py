@@ -79,7 +79,7 @@ class EchoCourse(object):
                     "Unable to parse course id (e.g. CS473) from JSON (course_data)", e
                 )
 
-        if type(self._course_id) != str:
+        if not isinstance(self._course_id, str):
             # it's type unicode for python2
             return self._course_id.encode("utf-8")
         return self._course_id
@@ -89,7 +89,7 @@ class EchoCourse(object):
         if self._course_name is None:
             # trigger getting course_id to get course name as well
             self.course_id
-        if type(self._course_name) != str:
+        if not isinstance(self._course_name, str):
             # it's type unicode for python2
             return self._course_name.encode("utf-8")
         return self._course_name
