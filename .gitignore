@@ -63,3 +63,4 @@ _browser_user_data_dir/
 .venv
 
 .ignore
+.trunk
